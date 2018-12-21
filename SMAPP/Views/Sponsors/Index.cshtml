@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SMAPP.Models.Sponsor>
+
+@{
+    ViewBag.Title = "Sponsors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sponsors</h2>
+<p>
+    @Html.ActionLink("New Sponsor", "New", "Sponsors", null, new { @class = "btn btn-primary" })
+</p>
+
+
+<table id="Sponsors" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Sponsor</th>
+            <th>Go to Website</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#Sponsors").DataTable({
+                "bInfo": false,
+                "bLengthChange": false,
+                ajax: {
+                    url: "/api/Sponsors",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, sponsor) {
+                            return "<a href='/Sponsors/edit/" + sponsor.id + "'>" + sponsor.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "url",
+                        render: function (data) {
+                            return "<button class='btn btn-secondarybtn-sm' data-Sponsor-id=" + data + ">Go To</button>";
+                        }
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-Sponsor-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#Sponsors").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this Sponsor?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/Sponsors/" + button.attr("data-Sponsor-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+
+
+        });
+    </script>
+}
