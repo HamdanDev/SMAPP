@@ -21,6 +21,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -128,6 +130,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -216,57 +222,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604040445246_InitialModel.cs" />
-    <Compile Include="Migrations\201604040445246_InitialModel.Designer.cs">
-      <DependentUpon>201604040445246_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201901031545093_Initial.cs" />
+    <Compile Include="Migrations\201901031545093_Initial.Designer.cs">
+      <DependentUpon>201901031545093_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604050035427_AddIsSubscribedToCustomer.cs" />
-    <Compile Include="Migrations\201604050035427_AddIsSubscribedToCustomer.Designer.cs">
-      <DependentUpon>201604050035427_AddIsSubscribedToCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050041345_AddMembershipType.cs" />
-    <Compile Include="Migrations\201604050041345_AddMembershipType.Designer.cs">
-      <DependentUpon>201604050041345_AddMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050143242_PopulateMembershipTypes.cs" />
-    <Compile Include="Migrations\201604050143242_PopulateMembershipTypes.Designer.cs">
-      <DependentUpon>201604050143242_PopulateMembershipTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050216273_ApplyAnnotationsToCustomerName.cs" />
-    <Compile Include="Migrations\201604050216273_ApplyAnnotationsToCustomerName.Designer.cs">
-      <DependentUpon>201604050216273_ApplyAnnotationsToCustomerName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050620598_AddNameToMembershipType.cs" />
-    <Compile Include="Migrations\201604050620598_AddNameToMembershipType.Designer.cs">
-      <DependentUpon>201604050620598_AddNameToMembershipType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050621225_SetNameOfMembershipTypes.cs" />
-    <Compile Include="Migrations\201604050621225_SetNameOfMembershipTypes.Designer.cs">
-      <DependentUpon>201604050621225_SetNameOfMembershipTypes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050626453_AddBirthdateToCustomer.cs" />
-    <Compile Include="Migrations\201604050626453_AddBirthdateToCustomer.Designer.cs">
-      <DependentUpon>201604050626453_AddBirthdateToCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050706359_AddMovie.cs" />
-    <Compile Include="Migrations\201604050706359_AddMovie.Designer.cs">
-      <DependentUpon>201604050706359_AddMovie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604050707219_Genres.cs" />
-    <Compile Include="Migrations\201604050707219_Genres.Designer.cs">
-      <DependentUpon>201604050707219_Genres.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604210211534_SeedUsers.cs" />
-    <Compile Include="Migrations\201604210211534_SeedUsers.Designer.cs">
-      <DependentUpon>201604210211534_SeedUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605020104315_AddRental.cs" />
-    <Compile Include="Migrations\201605020104315_AddRental.Designer.cs">
-      <DependentUpon>201605020104315_AddRental.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201605020226564_AddNumberAvailableToMovie.cs" />
-    <Compile Include="Migrations\201605020226564_AddNumberAvailableToMovie.Designer.cs">
-      <DependentUpon>201605020226564_AddNumberAvailableToMovie.cs</DependentUpon>
+    <Compile Include="Migrations\201901031552308_add_tag_columns_to_Sponsor.cs" />
+    <Compile Include="Migrations\201901031552308_add_tag_columns_to_Sponsor.Designer.cs">
+      <DependentUpon>201901031552308_add_tag_columns_to_Sponsor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -556,44 +518,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604040445246_InitialModel.resx">
-      <DependentUpon>201604040445246_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901031545093_Initial.resx">
+      <DependentUpon>201901031545093_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050035427_AddIsSubscribedToCustomer.resx">
-      <DependentUpon>201604050035427_AddIsSubscribedToCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050041345_AddMembershipType.resx">
-      <DependentUpon>201604050041345_AddMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050143242_PopulateMembershipTypes.resx">
-      <DependentUpon>201604050143242_PopulateMembershipTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050216273_ApplyAnnotationsToCustomerName.resx">
-      <DependentUpon>201604050216273_ApplyAnnotationsToCustomerName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050620598_AddNameToMembershipType.resx">
-      <DependentUpon>201604050620598_AddNameToMembershipType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050621225_SetNameOfMembershipTypes.resx">
-      <DependentUpon>201604050621225_SetNameOfMembershipTypes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050626453_AddBirthdateToCustomer.resx">
-      <DependentUpon>201604050626453_AddBirthdateToCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050706359_AddMovie.resx">
-      <DependentUpon>201604050706359_AddMovie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604050707219_Genres.resx">
-      <DependentUpon>201604050707219_Genres.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604210211534_SeedUsers.resx">
-      <DependentUpon>201604210211534_SeedUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605020104315_AddRental.resx">
-      <DependentUpon>201605020104315_AddRental.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201605020226564_AddNumberAvailableToMovie.resx">
-      <DependentUpon>201605020226564_AddNumberAvailableToMovie.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901031552308_add_tag_columns_to_Sponsor.resx">
+      <DependentUpon>201901031552308_add_tag_columns_to_Sponsor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -633,6 +562,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.45\build\Selenium.Chrome.WebDriver.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

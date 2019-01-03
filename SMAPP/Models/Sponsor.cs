@@ -29,6 +29,16 @@ namespace SMAPP.Models
 
         [Display(Name = "login button html Tag:")]
         public string SubmitTag { get; set; }
+
+        [Display(Name = "Username or Email html TagType :")]
+        public string UsernameTagType { get; set; }
+
+        [Display(Name = "Password html TagType :")]
+        public string PasswordTagType { get; set; }
+
+        [Display(Name = "login button html TagType:")]
+        public string SubmitTagType { get; set; }
+
         public bool isDeleted { get; set; }
 
     }

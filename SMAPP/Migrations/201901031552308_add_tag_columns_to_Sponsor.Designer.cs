@@ -7,13 +7,13 @@ namespace SMAPP.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class SeedUsers : IMigrationMetadata
+    public sealed partial class add_tag_columns_to_Sponsor : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(add_tag_columns_to_Sponsor));
         
         string IMigrationMetadata.Id
         {
-            get { return "201604210211534_SeedUsers"; }
+            get { return "201901031552308_add_tag_columns_to_Sponsor"; }
         }
         
         string IMigrationMetadata.Source

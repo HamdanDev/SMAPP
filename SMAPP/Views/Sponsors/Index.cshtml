@@ -43,8 +43,9 @@
                     },
                     {
                         data: "url",
-                        render: function (data) {
-                            return "<button class='btn btn-secondarybtn-sm' data-Sponsor-id=" + data + ">Go To</button>";
+                        render: function (data, type, sponsor) {
+                            //return "<a href='/Sponsors/GoTo/" + sponsor.id + "' class='btn btn-secondary btn-sm'>Go To </a>";
+                            return "<p><a class='btn btn-default' href='/Sponsors/GoTo/" + sponsor.id + "'> Goto </a></p>";                            
                         }
                     },
                     {

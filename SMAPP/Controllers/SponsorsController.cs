@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SMAPP.Models;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace SMAPP.Controllers
 {
@@ -51,7 +53,7 @@ namespace SMAPP.Controllers
             if (!ModelState.IsValid)
             {
                 var model = new Sponsor();
-                return View("SponsorForm",model);
+                return View("SponsorForm", model);
             }
 
             if (sponsor.Id == 0)
@@ -100,6 +102,37 @@ namespace SMAPP.Controllers
 
             return View("SponsorsForm", model);
 
+        }
+
+        public ActionResult GoTo(int id)
+        {
+            var sponsor = _context.Sponsors.SingleOrDefault(c => c.Id == id);
+
+            IWebDriver driver = new ChromeDriver();
+
+            driver.Manage().Window.Minimize();
+            driver.Navigate().GoToUrl(sponsor.Url);
+
+            // Get the page elements
+            try
+            {
+                var userNameField = driver.FindElement(By.Id(sponsor.UsernameTag));
+                var PasswordField = driver.FindElement(By.Id(sponsor.PasswordTag));
+                var loginButton   = driver.FindElement(By.Id(sponsor.SubmitTag));
+
+                // Type user name and password
+                userNameField.SendKeys(sponsor.Username);
+                PasswordField.SendKeys(sponsor.Password);
+
+                // and click the login button
+                loginButton.Click();
+
+                driver.Manage().Window.Maximize();
+            }
+            catch {}
+
+
+            return View("Index");
         }
     }
 }
