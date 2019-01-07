@@ -108,9 +108,19 @@ namespace SMAPP.Controllers
         {
             var sponsor = _context.Sponsors.SingleOrDefault(c => c.Id == id);
 
-            IWebDriver driver = new ChromeDriver();
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService();
+            service.HideCommandPromptWindow = true;
 
-            driver.Manage().Window.Minimize();
+            //Hide Browser
+            var options = new ChromeOptions();
+            //options.AddArgument("headless");
+            options.AddArgument("--window-position=-32000,-32000");
+            options.AddArgument("--ignore-certificate-errors");
+            options.AddArgument("--disable-popup-blocking");
+            options.AddArgument("--incognito");
+
+            var driver = new ChromeDriver(service, options);
+
             driver.Navigate().GoToUrl(sponsor.Url);
 
             // Get the page elements
@@ -129,10 +139,15 @@ namespace SMAPP.Controllers
 
                 driver.Manage().Window.Maximize();
             }
-            catch {}
+            catch
+            {
 
+            }
 
-            return View("Index");
+            if (User.IsInRole(RoleName.CanManageAPP))
+                return View("Index");
+            else
+                return View("ReadOnlyList");
         }
     }
 }

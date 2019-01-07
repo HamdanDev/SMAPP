@@ -13,6 +13,7 @@
     </thead>
     <tbody></tbody>
 </table>
+
 @section scripts
 {
     <script>
@@ -29,8 +30,11 @@
                         data: "name"
                     },
                     {
-                        data: "url"
-                    }
+                        data: "url",
+                        render: function (data, type, sponsor) {
+                            return "<p><a class='btn btn-default' href='/Sponsors/GoTo/" + sponsor.id + "'> Goto </a></p>";
+                        }
+                    },
                 ]
             });
         });
