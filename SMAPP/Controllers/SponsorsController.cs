@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using SMAPP.Models;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 
 namespace SMAPP.Controllers
 {
@@ -119,24 +120,75 @@ namespace SMAPP.Controllers
             options.AddArgument("--disable-popup-blocking");
             options.AddArgument("--incognito");
 
-            var driver = new ChromeDriver(service, options);
 
+            var driver = new ChromeDriver(service, options);
             driver.Navigate().GoToUrl(sponsor.Url);
 
             // Get the page elements
             try
             {
-                var userNameField = driver.FindElement(By.Id(sponsor.UsernameTag));
-                var PasswordField = driver.FindElement(By.Id(sponsor.PasswordTag));
-                var loginButton   = driver.FindElement(By.Id(sponsor.SubmitTag));
+                IWebElement userNameField = null;
+                IWebElement PasswordField = null;
+                IWebElement loginButton = null;
 
-                // Type user name and password
+                switch (sponsor.UsernameTagType)
+                {
+                    case "id":
+                        userNameField = driver.FindElement(By.Id(sponsor.UsernameTag));
+                        break;
+
+                    case "name":
+                        userNameField = driver.FindElement(By.Name(sponsor.UsernameTag));
+                        break;   
+                }
+
+                switch (sponsor.PasswordTagType)
+                {
+                    case "id":
+                        PasswordField = driver.FindElement(By.Id(sponsor.PasswordTag));
+                        break;
+
+                    case "name":
+                        PasswordField = driver.FindElement(By.Name(sponsor.PasswordTag));
+                        break;
+
+                    case "type":
+                        PasswordField = driver.FindElement(By.TagName(sponsor.PasswordTag));
+                        break;
+                }
+
+                switch (sponsor.SubmitTagType)
+                {
+                    case "id":
+                        loginButton = driver.FindElement(By.Id(sponsor.SubmitTag));
+                        break;
+
+                    case "name":
+                        loginButton = driver.FindElement(By.Name(sponsor.SubmitTag));
+                        break;
+
+                    case "type":
+                        loginButton = driver.FindElement(By.TagName(sponsor.SubmitTag));
+                        break;
+                }
+
+               // Type user name and password
+                userNameField.Clear();
+                userNameField.Clear();
                 userNameField.SendKeys(sponsor.Username);
                 PasswordField.SendKeys(sponsor.Password);
 
                 // and click the login button
-                loginButton.Click();
-
+                try
+                {
+                    Actions builder = new Actions(driver);
+                    builder.SendKeys(Keys.Enter);
+                }
+                catch
+                {
+                    loginButton.Click();
+                }
+                                
                 driver.Manage().Window.Maximize();
             }
             catch
